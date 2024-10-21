@@ -1,12 +1,12 @@
 package objetos;
 
-public class Quartos {
+public class Quarto {
 	private int numero;
 	private String tipo;
 	private float preco;
 	private boolean disponibilidade;
 	
-	public Quartos(int numero, String tipo, float preco) {
+	public Quarto(int numero, String tipo, float preco) {
 		this.numero = numero;
 		this.tipo = tipo;
 		this.preco = preco;
