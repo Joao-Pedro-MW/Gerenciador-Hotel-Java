@@ -7,9 +7,10 @@ public class Reserva {
 	private String dataCKOUT;
 	private int numeroQuarto;
 	
-	public Reserva(Hospede hospede, String dataCKIN,int numeroQuarto) {
+	public Reserva(Hospede hospede, String dataCKIN, String dataCKOUT, int numeroQuarto) {
 		this.hospede = hospede;
 		this.dataCKIN = dataCKIN;
+		this.dataCKOUT = dataCKOUT;
 		this.numeroQuarto = numeroQuarto;
 	}
 	
