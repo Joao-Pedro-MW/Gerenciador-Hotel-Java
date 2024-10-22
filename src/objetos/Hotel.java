@@ -24,7 +24,7 @@ public class Hotel {
 			}
 		}
 	}
-	public void RealizaCheckIn(Hospede hospede, Reserva reserva, String dataCheckIn, String dataCheckOut,String tipoQuarto) {
+	public void RealizaCheckIn(Hospede hospede, String dataCheckIn, String dataCheckOut,String tipoQuarto) {
 		for (Quarto quarto : quartos) {
 			if(quarto.getTipo().equalsIgnoreCase(tipoQuarto)) {
 				quarto.setDisponibilidade(false);
