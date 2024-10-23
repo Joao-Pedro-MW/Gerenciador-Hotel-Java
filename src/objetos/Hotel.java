@@ -25,13 +25,22 @@ public class Hotel {
 		}
 	}
 	public void RealizaCheckIn(Hospede hospede, String dataCheckIn, String dataCheckOut,String tipoQuarto) {
-		for (Quarto quarto : quartos) {
-			if(quarto.getTipo().equalsIgnoreCase(tipoQuarto)) {
-				quarto.setDisponibilidade(false);
-				System.out.println("Quarto disponível: " + quarto.getNumero());
-		        CadastrarReserva(new Reserva(hospede, dataCheckIn, dataCheckOut, quarto.getNumero()));
-				break;
+		boolean flagCheckIn  = false;
+		while(!flagCheckIn) {
+			for (Quarto quarto : quartos) {
+					if(quarto.getTipo().equalsIgnoreCase(tipoQuarto) && quarto.getDisponibilidade()) {
+						quarto.setDisponibilidade(false);
+						System.out.println("Quarto disponível: " + quarto.getNumero());
+				        CadastrarReserva(new Reserva(hospede, dataCheckIn, dataCheckOut, quarto.getNumero()));
+						System.out.println("Check-in realizado ! :D");
+						flagCheckIn = true;
+				        break;
+			        }
+					
+					break;
 			}
+			
+			
 		}
 	}
 	public void RealizaCheckOut(Reserva reserva) {
