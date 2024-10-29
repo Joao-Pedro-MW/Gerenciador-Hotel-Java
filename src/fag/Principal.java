@@ -27,8 +27,8 @@ public class Principal {
 			System.out.println("3. Check-out");
 			System.out.println("4. Listar Reservas");
 			System.out.println("5. Listar Quartos");
-			//System.out.println("6. Relatório de ocupação - Geral");
-			//System.out.println("7. Relatório de ocupação - Hóspede");
+			System.out.println("6. Relatório de ocupação - Geral");
+			System.out.println("7. Relatório de ocupação - Hóspede");
 			System.out.println("0. Sair");
 			System.out.print("Escolha uma opção: ");
 			opcao = scanner.nextInt();
@@ -50,12 +50,12 @@ public class Principal {
 			case 5:
 				listarQuartos(hotel);
 				break;
-			/*case 6:
+			case 6:
 				gerarRelatorioOcupacao(hotel);
 				break;
 			case 7:
 				gerarRelatorioOcupacaoHospedes(hotel, scanner);
-				break;*/
+				break;
 			case 0:
 				System.out.println("Saindo...");
 				break;
@@ -96,7 +96,6 @@ public class Principal {
 
 		System.out.print("Tipo de quarto reservado: ");
 		String tipoQuarto = scan.nextLine();
-
 		hotel.RealizaCheckIn(hospede, dataCheckIn, dataCheckOut, tipoQuarto);
 	}
 
@@ -126,7 +125,7 @@ public class Principal {
 		} else {
 			for (Quarto quarto : listaQuartos) {
 				System.out.println("Número: " + quarto.getNumero() + ", tipo: " + quarto.getTipo() + ", preço: "
-						+ quarto.getPreco());
+						+ quarto.getPreco() + ", disponibilidade: " + quarto.getDisponibilidade());
 				System.out.println("-----------");
 			}
 			System.out.println("- - - - - - - Lista finalizada - - - - - ");
@@ -148,7 +147,7 @@ public class Principal {
 		}
 	}
 
-	/*public static void gerarRelatorioOcupacao(Hotel hotel) {
+	public static void gerarRelatorioOcupacao(Hotel hotel) {
 		List<Reserva> reservas = hotel.getReservas();
 		System.out.println("Quantidade de reservas já feitas: " + reservas.size());
 		if (reservas.isEmpty()) {
@@ -165,21 +164,12 @@ public class Principal {
 				// criar a lista de quartos no hashmap;
 				// criar soma de +1 na chave do tipo de quarto;
 				// se não existir a chave, criar e add +1;
-				contagemQuartos.put(reserva.getNumeroQuarto(),contagemQuartos.getOrDefault(reserva.getNumeroQuarto(), 0) + (int) 1);
-
-				// calcular total de dias da reserva;
-				 int diasOcupados = (int) ChronoUnit.DAYS.between(
-		                    LocalDate.parse(reserva.getDataCheckIn(), formatter),
-		                    LocalDate.parse(reserva.getDataCheckOut(), formatter));
-				 totalDias += diasOcupados;
+				contagemQuartos.put(reserva.getNumeroQuarto(),contagemQuartos.getOrDefault(reserva.getNumeroQuarto(), 1) );
 			}
 			System.out.println("Contagem de reservas por tipo de quarto:");
 			for (Map.Entry<Integer, Integer> entry : contagemQuartos.entrySet()) {
 				System.out.println("Quarto " + entry.getKey() + ": " + entry.getValue() + " reservas");
 			}
-
-			double mediaDias = (double) totalDias / reservas.size();
-			System.out.println("Média de dias de ocupação: " + mediaDias);
 		}
 	}
 
@@ -190,14 +180,11 @@ public class Principal {
 		boolean flagHospede = false;
 		for (Reserva reserva : reservas) {
 			if (reserva.getHospede().getNome().equalsIgnoreCase(nome_hospede)) {
-				hotel.RealizaCheckOut(reserva);
-				flagHospede = true;
-				System.out.println("Check-out realizado!");
-				break;
+				System.out.println("Nome hóspede: " + reserva.getHospede() + ", check-in: " + reserva.getDataCheckIn() + ", check-out: " + reserva.getDataCheckOut() + ", número quarto: "+ reserva.getNumeroQuarto());
 			}
 		}
 		if (!flagHospede) {
 			System.out.println("Ops! Hóspede não encontrado.");
 		}
-	}*/
+	}
 }
